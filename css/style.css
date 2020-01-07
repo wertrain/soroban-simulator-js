@@ -2,3 +2,40 @@ body {
   padding-top: 10px;
   background-color: #D4D5D7;
 }
+
+table {
+  border: 16px #5a2a08 solid;
+  width: 600px;
+}
+
+td, th {
+  border: 3px #ca7d45 solid;
+  width: 600px;
+  height: 35px;
+}
+
+td.separater { border-bottom: 16px #5a2a08 solid; }
+
+.tama.icon {
+  color: #722f00;
+  position: absolute;
+  margin-top: -16px;
+  margin-left: 28px;
+  width: 35px;
+  height: 35px;
+  background-color: currentColor;
+  border: solid 3px currentColor;
+  border-radius: 18px 0px 18px 0;
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+}
+
+.tama.icon:after {
+  content: '';
+  color: #d2691e;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background-color: currentColor;
+  border-radius: 18px 0px 18px 0;
+}
