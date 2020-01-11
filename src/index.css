@@ -91,7 +91,7 @@ td.separater { border-bottom: 16px #5a2a08 solid; }
   border-radius: 18px 0px 18px 0;
 }
 
-.tama.icon:hover {
+.active {
   background: #ccc;
   margin-top: -60px;
 }
