@@ -1,46 +1,13 @@
 body {
   background-color: #D4D5D7;
-  margin: 40px;
+    margin: 0px 40px 0px 40px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-
-.tama.icon {
-  color: #722f00;
-  position: absolute;
-  margin-top: -18px;
-  margin-left: 30px;
-  width: 40px;
-  height: 40px;
-  background-color: currentColor;
-  border: solid 3px currentColor;
-  border-radius: 18px 0px 18px 0;
-  -webkit-transform: rotate(225deg);
-          transform: rotate(225deg);
-  /*transition: all 300ms 0s ease;*/
-}
-
-.tama.icon:after {
-  content: '';
-  color: #d2691e;
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-color: currentColor;
-  border-radius: 18px 0px 18px 0;
-}
-
-.tama.icon.active {
-  background: #ccc;
-  margin-top: -60px;
-}
-
-.amount {
-  background: #fff;
-  border: 1px solid #999;
-  font-size: 36px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  padding: 0;
-  padding: 0.5em;/*文字まわり（上下左右）の余白*/
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
