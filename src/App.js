@@ -94,6 +94,57 @@ class SorobanCell extends React.Component {
   }
 }
 
+class SorobanValueView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+    this.hide = { display: 'none' };
+    this.show = { display: '' };
+    this.state = {
+      input: false,
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.input && !prevState.input) {
+      //this.textInput.focus();
+      return false;
+    }
+  }
+  render() {
+    let focused = false;
+    return (
+      <>
+        <div style={this.state.input ? this.show : this.hide}>
+          <input type="number" ref={(input) => { this.textInput = input; }} placeholder={this.props.amountValue.toLocaleString()} className="amount"
+            onBlur={(e) => {
+              this.setState({input:false});
+              focused = false;
+            }}
+            onMouseEnter={(e) => {
+              if (!focused) {
+                this.textInput.focus();
+                focused = true;
+              }
+            }}
+            onMouseLeave={(e) => {
+              this.setState({input:false});
+              focused = false;
+            }}
+            onChange={()=> {
+              //console.log(this.textInput.value);
+            }}
+          ></input >
+        </div>
+        <div style={this.state.input ? this.hide : this.show}>
+          <div className="amount" onMouseDown={(e) => {
+            this.setState({input:true});
+          }}>{this.props.amountValue.toLocaleString()}</div>
+        </div>
+      </>
+    );
+  }
+}
+
 class Soroban extends React.Component {
   constructor(props) {
     super(props);
@@ -204,6 +255,7 @@ class Soroban extends React.Component {
     }
     this.setState({amountValue: amount});
   }
+
   render() {
     return (
       <>
@@ -221,7 +273,7 @@ class Soroban extends React.Component {
         <div className="btn-area">
           <button className="btn-square-little-rich" onClick={() => this.resetZeroPosition()}>RESET ZERO</button>
         </div>
-        <div className="amount">{this.state.amountValue}</div>
+        <SorobanValueView amountValue={this.state.amountValue} />
       </>
     );
   }
