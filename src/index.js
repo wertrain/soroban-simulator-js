@@ -25,18 +25,25 @@ const BALL_ANIM = {
 class SorobanCell extends React.Component {
   constructor(props) {
     super(props);
-    // テーブルセル
+    // テーブルセルスタイル
     this.tableCellStyle = {
       border: '4px #ca7d45 solid',
-      height: 35,
+      height: 38,
       borderTop: '0px',
-      borderBottom: '0px solid',
+      borderBottom: '0px',
     };
     this.tableCellSeparaterStyle = {
       border: '4px #ca7d45 solid',
-      height: 35,
+      height: 38,
       borderTop: '0px',
       borderBottom: '16px #5a2a08 solid'
+    };
+    // 珠の位置スタイル
+    this.upStyle = {
+      marginTop: -BALL_MOVE
+    };
+    this.defaultStyle = {
+      marginTop: 0
     };
     this.index = props.index;
     this.digit = props.digit;
@@ -44,12 +51,6 @@ class SorobanCell extends React.Component {
     this.tama = props.tama;
     this.separater = props.separater;
     this.cellChanged = props.callback;
-    this.upStyle = {
-      marginTop: -BALL_MOVE
-    };
-    this.defaultStyle = {
-      marginTop: 0
-    };
     this.state = {
       cells: props.cells,
       cellStyle: this.defaultStyle,
@@ -108,6 +109,8 @@ class Soroban extends React.Component {
       width: 64 * props.length,
     };
     this.length = props.length;
+
+    // 珠を動かす（おく）コールバック
     this.cellChanged = (index) => {
       let cells = this.state.cells;
       // 自身の珠を動かす
@@ -131,6 +134,7 @@ class Soroban extends React.Component {
         }
       }
       this.setState({cells: cells});
+      this.calcValue();
     }
   }
   renderCells(params) {
@@ -139,7 +143,7 @@ class Soroban extends React.Component {
     for(let i = 0; i < max; i++) {
       let index = (params.index * params.num) + i;
       let d = Math.floor(max / 2) - i;
-      let digit = Math.pow(10, Math.abs(d)) * (d > 0 ? 1 : -1);
+      let digit = Math.pow(10, Math.abs(d)) * (d >= 0 ? 1 : -1);
       cellComponents.push(<SorobanCell 
         key={index} index={index} value={params.value} digit={digit}
         tama={params.tama} separater={params.sep} cells={this.state.cells} callback={this.cellChanged} 
@@ -160,12 +164,25 @@ class Soroban extends React.Component {
     }
     this.setState({cells: cells});
   }
+  resetZeroPosition() {
+    let cells = this.state.cells;
+    let isBallOf5 = (v) => { return (this.length * 2) > v; }
+    for(let i = 0; i < this.state.cells.length; i++) {
+      cells[i] = isBallOf5(i);
+    }
+    this.setState({cells: cells});
+    this.calcValue();
+  }
   calcValue() {
     let amount = 0;
     for (let i = 0; i < this.cellComponents.length; ++i) {
       for (let j = 0; j < this.cellComponents[i].length; ++j) {
         let params = this.cellComponents[i][j].props;
-        amount += (params.tama && this.state.cells[(this.length * i) + j]) ? (params.digit * params.value) : 0;
+        let on = this.state.cells[(this.length * i) + j];
+        if (typeof params.tama === 'undefined') continue;
+        let value = (params.digit * params.value);
+        if (params.value === 5)  amount += !on ? value : 0;
+        else if (params.value === 1)  amount += on ? value : 0;
       }
     }
     this.setState({amountValue: amount});
@@ -185,12 +202,13 @@ class Soroban extends React.Component {
           </tbody>
         </table>
         <button onClick={() => this.reset()}>RESET</button>
-        <button onClick={() => this.calcValue()}>{this.state.amountValue}</button>
+        <button onClick={() => this.resetZeroPosition()}>RESET ZERO</button>
+        <div className="amount">{this.state.amountValue}</div>
       </>
     );
   }
 }
 ReactDOM.render(
-  <Soroban length={14}/>,
+  <Soroban length={14} />,
   document.getElementById('root')
 );
