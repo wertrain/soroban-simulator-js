@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/soroban-simulator-js/static/css/main.46aac1f8.chunk.css",
-    "main.js": "/soroban-simulator-js/static/js/main.f8db0924.chunk.js",
-    "main.js.map": "/soroban-simulator-js/static/js/main.f8db0924.chunk.js.map",
+    "main.css": "/soroban-simulator-js/static/css/main.845d3298.chunk.css",
+    "main.js": "/soroban-simulator-js/static/js/main.6e65e095.chunk.js",
+    "main.js.map": "/soroban-simulator-js/static/js/main.6e65e095.chunk.js.map",
     "runtime-main.js": "/soroban-simulator-js/static/js/runtime-main.72ce8880.js",
     "runtime-main.js.map": "/soroban-simulator-js/static/js/runtime-main.72ce8880.js.map",
     "static/js/2.427bbd6a.chunk.js": "/soroban-simulator-js/static/js/2.427bbd6a.chunk.js",
     "static/js/2.427bbd6a.chunk.js.map": "/soroban-simulator-js/static/js/2.427bbd6a.chunk.js.map",
     "index.html": "/soroban-simulator-js/index.html",
-    "precache-manifest.36b4f62ce9d0bcd1c6b9131d36d118ec.js": "/soroban-simulator-js/precache-manifest.36b4f62ce9d0bcd1c6b9131d36d118ec.js",
+    "precache-manifest.b2f60ef1006f3c445f973aae982210ef.js": "/soroban-simulator-js/precache-manifest.b2f60ef1006f3c445f973aae982210ef.js",
     "service-worker.js": "/soroban-simulator-js/service-worker.js",
-    "static/css/main.46aac1f8.chunk.css.map": "/soroban-simulator-js/static/css/main.46aac1f8.chunk.css.map",
+    "static/css/main.845d3298.chunk.css.map": "/soroban-simulator-js/static/css/main.845d3298.chunk.css.map",
     "static/js/2.427bbd6a.chunk.js.LICENSE": "/soroban-simulator-js/static/js/2.427bbd6a.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.72ce8880.js",
     "static/js/2.427bbd6a.chunk.js",
-    "static/css/main.46aac1f8.chunk.css",
-    "static/js/main.f8db0924.chunk.js"
+    "static/css/main.845d3298.chunk.css",
+    "static/js/main.6e65e095.chunk.js"
   ]
 }
