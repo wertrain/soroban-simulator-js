@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Transition } from 'react-transition-group';
 
-const BALL_MOVE = 50;
+const BALL_MOVE = 25;
 const ANIM_DURATION = 200;
 const BALL_ANIM = {
   entering: {
@@ -33,15 +33,15 @@ class SorobanCell extends React.Component {
     // テーブルセルスタイル
     this.tableCellStyle = {
       border: '4px #ca7d45 solid',
-      height: 38,
+      height: 24,
       borderTop: '0px',
       borderBottom: '0px',
     };
     this.tableCellSeparaterStyle = {
       border: '4px #ca7d45 solid',
-      height: 38,
+      height: 24,
       borderTop: '0px',
-      borderBottom: '16px #5a2a08 solid'
+      borderBottom: '10px #C0C0C0 solid'
     };
     // 珠の位置スタイル
     this.upStyle = {
@@ -62,8 +62,8 @@ class SorobanCell extends React.Component {
       onExit: () => this.setState({cellStyle: this.upStyle}),
       onExited: () => this.setState({cellStyle: this.defaultStyle}),
     };
-    const tamaClass = (this.props.tama ? "tama icon" : null)
-    const separaterClass = (this.props.separater ? this.tableCellSeparaterStyle : this.tableCellStyle)
+    const tamaClass = (this.props.tama ? "tama icon" : (this.props.teiiten ? "teiiten icon" : null));
+    const separaterClass = (this.props.separater ? this.tableCellSeparaterStyle : this.tableCellStyle);
     return (<Transition in={this.state.cells[this.props.index]} timeout={ANIM_DURATION} {...callbacks}>
       {
         state => (
@@ -72,6 +72,7 @@ class SorobanCell extends React.Component {
             <div style={BALL_ANIM[state]}>
               <div className={tamaClass}
                 onMouseOver={(e) => {
+                  if (!this.props.tama) return;
                   if (!this.props.isEnableTouch()) return;
                   if (e.buttons === 0) return; // 何かボタンを押していたら
                   if (state === 'entered' || state === 'exited') {
@@ -79,6 +80,7 @@ class SorobanCell extends React.Component {
                   }
                 }}
                 onMouseDown={() => {
+                  if (!this.props.tama) return;
                   if (!this.props.isEnableTouch()) return;
                   if (state === 'entered' || state === 'exited') {
                     this.props.changeCell(this.props.index);
@@ -124,14 +126,8 @@ class SorobanValueView extends React.Component {
                 focused = true;
               }
             }}
-            onMouseLeave={(e) => {
-              this.setState({input:false});
-              focused = false;
-              this.textInput.value = this.props.amountValue;
-            }}
             onChange={()=> {
               this.props.calc(this.textInput.value);
-              //console.log(this.textInput.value);
             }}
           ></input >
         </div>
@@ -160,7 +156,7 @@ class Soroban extends React.Component {
       border: '16px #5a2a08 solid',
       borderLeft: '32px #5a2a08 solid',
       borderRight: '32px #5a2a08 solid',
-      width: 64 * props.length,
+      width: 48 * props.length,
     };
     this.length = props.length;
     this.enableTouch = false;
@@ -177,7 +173,7 @@ class Soroban extends React.Component {
       // 自身より上にある珠を動かす
       if (toggle) {
         let i = index;
-        let max = this.length * 2; // 最初の2行は動かさない
+        let max = this.length * 3; // 最初の3行は動かさない
         while (i > max) {
           cells[i] = toggle;
           i = i - this.length;
@@ -231,14 +227,16 @@ class Soroban extends React.Component {
       let digit = Math.pow(10, Math.abs(d)) * (d >= 0 ? 1 : -1);
       cellComponents.push(<SorobanCell 
         key={index} index={index} value={params.value} digit={digit}
-        tama={params.tama} separater={params.sep} cells={this.state.cells} changeCell={this.changeCell} isEnableTouch={this.isEnableTouch}
+        tama={params.tama} teiiten={params.teiiten && digit == 1} separater={params.sep} cells={this.state.cells} 
+        changeCell={this.changeCell} isEnableTouch={this.isEnableTouch}
       />);
     }
     // 最後の列は珠なし
     let lastIndex = (params.index * params.num) + params.num;
     cellComponents.push(<SorobanCell 
       key={lastIndex} index={lastIndex} value={0} digit={0}
-      tama={false} separater={params.sep} cells={this.state.cells} changeCell={this.changeCell}
+      tama={false} separater={params.sep} cells={this.state.cells}
+      changeCell={this.changeCell}
     />)
     this.cellComponents[params.index] = cellComponents;
     return (<tr>{cellComponents}</tr>);
@@ -292,17 +290,19 @@ class Soroban extends React.Component {
           <tbody>
             { this.renderCells({ index:0, num:this.props.length}) }
             { this.renderCells({ index:1, num:this.props.length, sep:true, tama:true, value:5 }) }
-            { this.renderCells({ index:2, num:this.props.length}) }
+            { this.renderCells({ index:2, num:this.props.length, teiiten:true }) }
             { this.renderCells({ index:3, num:this.props.length, tama:true, value:1 }) }
             { this.renderCells({ index:4, num:this.props.length, tama:true, value:1 }) }
             { this.renderCells({ index:5, num:this.props.length, tama:true, value:1 }) }
             { this.renderCells({ index:6, num:this.props.length, tama:true, value:1 }) }
           </tbody>
         </table>
+        <div className="amount-value-area">
+          <SorobanValueView amountValue={this.state.amountValue} calc={this.setPositionByNumber} />
+        </div>
         <div className="btn-area">
           <button className="btn-square-little-rich" onClick={() => this.resetZeroPosition()}>RESET ZERO</button>
         </div>
-        <SorobanValueView amountValue={this.state.amountValue} calc={this.setPositionByNumber} />
       </>
     );
   }
