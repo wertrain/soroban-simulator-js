@@ -227,7 +227,7 @@ class Soroban extends React.Component {
       let digit = Math.pow(10, Math.abs(d)) * (d >= 0 ? 1 : -1);
       cellComponents.push(<SorobanCell 
         key={index} index={index} value={params.value} digit={digit}
-        tama={params.tama} teiiten={params.teiiten && digit == 1} separater={params.sep} cells={this.state.cells} 
+        tama={params.tama} teiiten={params.teiiten && digit === 1} separater={params.sep} cells={this.state.cells} 
         changeCell={this.changeCell} isEnableTouch={this.isEnableTouch}
       />);
     }
