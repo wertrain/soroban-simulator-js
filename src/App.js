@@ -145,9 +145,10 @@ class SorobanValueView extends React.Component {
 class Soroban extends React.Component {
   constructor(props) {
     super(props);
+    this.length = (props.length + 1); // 左端は空列にするのでテーブル自体は +1 増やす
     this.state = {
       amountValue: 0,
-      cells: Array(props.length * 7).fill(false)
+      cells: Array(this.length * 7).fill(false)
     };
     this.cellComponents = [];
     // デザイン定義
@@ -156,9 +157,8 @@ class Soroban extends React.Component {
       border: '16px #5a2a08 solid',
       borderLeft: '32px #5a2a08 solid',
       borderRight: '32px #5a2a08 solid',
-      width: 48 * props.length,
+      width: 48 * this.length,
     };
-    this.length = props.length;
     this.enableTouch = false;
     // 操作可能か判定するコールバック
     this.isEnableTouch = () => {
@@ -198,18 +198,18 @@ class Soroban extends React.Component {
         cells[i] = isBallOf5(i);
       }
       let chars = num.split("");
-      let center = Math.ceil(this.props.length / 2);
+      let center = Math.ceil(this.length / 2);
       let skipRaw = 3; // 五珠の二行と一珠の一行目をスキップ
       if (chars.length < center) {
         let startIndex = center - chars.length;
         for (let i = 0; i < chars.length; ++i) {  
           let c = parseInt(chars[i]);
           if (c >= 5) {
-            cells[startIndex + this.props.length + i] = false;
+            cells[startIndex + this.length + i] = false;
             c -= 5;
           }
           for (let j = 0; j < c; ++j) {
-            cells[startIndex + (this.props.length * (j + skipRaw)) + i] = true;
+            cells[startIndex + (this.length * (j + skipRaw)) + i] = true;
           }
         }
       }
@@ -288,13 +288,13 @@ class Soroban extends React.Component {
       <>
         <table style={this.tableStyle}>
           <tbody>
-            { this.renderCells({ index:0, num:this.props.length}) }
-            { this.renderCells({ index:1, num:this.props.length, sep:true, tama:true, value:5 }) }
-            { this.renderCells({ index:2, num:this.props.length, teiiten:true }) }
-            { this.renderCells({ index:3, num:this.props.length, tama:true, value:1 }) }
-            { this.renderCells({ index:4, num:this.props.length, tama:true, value:1 }) }
-            { this.renderCells({ index:5, num:this.props.length, tama:true, value:1 }) }
-            { this.renderCells({ index:6, num:this.props.length, tama:true, value:1 }) }
+            { this.renderCells({ index:0, num:this.length}) }
+            { this.renderCells({ index:1, num:this.length, sep:true, tama:true, value:5 }) }
+            { this.renderCells({ index:2, num:this.length, teiiten:true }) }
+            { this.renderCells({ index:3, num:this.length, tama:true, value:1 }) }
+            { this.renderCells({ index:4, num:this.length, tama:true, value:1 }) }
+            { this.renderCells({ index:5, num:this.length, tama:true, value:1 }) }
+            { this.renderCells({ index:6, num:this.length, tama:true, value:1 }) }
           </tbody>
         </table>
         <div className="amount-value-area">
