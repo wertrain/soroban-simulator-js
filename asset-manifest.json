@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/soroban-simulator-js/static/css/main.653f8c75.chunk.css",
-    "main.js": "/soroban-simulator-js/static/js/main.2a54d2e2.chunk.js",
-    "main.js.map": "/soroban-simulator-js/static/js/main.2a54d2e2.chunk.js.map",
+    "main.js": "/soroban-simulator-js/static/js/main.08a41393.chunk.js",
+    "main.js.map": "/soroban-simulator-js/static/js/main.08a41393.chunk.js.map",
     "runtime-main.js": "/soroban-simulator-js/static/js/runtime-main.72ce8880.js",
     "runtime-main.js.map": "/soroban-simulator-js/static/js/runtime-main.72ce8880.js.map",
     "static/js/2.427bbd6a.chunk.js": "/soroban-simulator-js/static/js/2.427bbd6a.chunk.js",
     "static/js/2.427bbd6a.chunk.js.map": "/soroban-simulator-js/static/js/2.427bbd6a.chunk.js.map",
     "index.html": "/soroban-simulator-js/index.html",
-    "precache-manifest.2fa9fffc7c39a7b9a4312fd2ebd534f8.js": "/soroban-simulator-js/precache-manifest.2fa9fffc7c39a7b9a4312fd2ebd534f8.js",
+    "precache-manifest.9f47c01cbc284734f348a799fdae1fc2.js": "/soroban-simulator-js/precache-manifest.9f47c01cbc284734f348a799fdae1fc2.js",
     "service-worker.js": "/soroban-simulator-js/service-worker.js",
     "static/css/main.653f8c75.chunk.css.map": "/soroban-simulator-js/static/css/main.653f8c75.chunk.css.map",
     "static/js/2.427bbd6a.chunk.js.LICENSE": "/soroban-simulator-js/static/js/2.427bbd6a.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.72ce8880.js",
     "static/js/2.427bbd6a.chunk.js",
     "static/css/main.653f8c75.chunk.css",
-    "static/js/main.2a54d2e2.chunk.js"
+    "static/js/main.08a41393.chunk.js"
   ]
 }

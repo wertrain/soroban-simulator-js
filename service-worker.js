@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/soroban-simulator-js/precache-manifest.2fa9fffc7c39a7b9a4312fd2ebd534f8.js"
+  "/soroban-simulator-js/precache-manifest.9f47c01cbc284734f348a799fdae1fc2.js"
 );
 
 self.addEventListener('message', (event) => {

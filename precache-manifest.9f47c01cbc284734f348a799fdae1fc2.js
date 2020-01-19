@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1706582b7015f84bff9976bf633f5ca7",
+    "revision": "d95cfc4948bef310cfa415ec983a0c65",
     "url": "/soroban-simulator-js/index.html"
   },
   {
-    "revision": "3fee92778d56aaa008e1",
+    "revision": "b335cb2d1af3edf098c3",
     "url": "/soroban-simulator-js/static/css/main.653f8c75.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/soroban-simulator-js/static/js/2.427bbd6a.chunk.js.LICENSE"
   },
   {
-    "revision": "3fee92778d56aaa008e1",
-    "url": "/soroban-simulator-js/static/js/main.2a54d2e2.chunk.js"
+    "revision": "b335cb2d1af3edf098c3",
+    "url": "/soroban-simulator-js/static/js/main.08a41393.chunk.js"
   },
   {
     "revision": "e44a5041c71e0d538bff",
